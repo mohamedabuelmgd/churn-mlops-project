@@ -1,0 +1,27 @@
+stages:
+  preprocess:
+    cmd: python src/preprocessing.py
+    deps:
+      - src/preprocessing.py
+      - data/raw/Telco_Customer_Churn.csv
+    outs:
+      - data/processed
+      - models/preprocessor.joblib
+
+  train:
+    cmd: python src/training.py
+    deps:
+      - src/training.py
+      - data/processed
+      - models/preprocessor.joblib
+      - params.yaml
+    outs:
+      - models/model.joblib
+  evaluate:
+    cmd: python src/evaluating.py
+    deps:
+      - src/evaluating.py
+      - models/model.joblib
+      - data/processed
+    outs:
+      - reports/metrics.txt

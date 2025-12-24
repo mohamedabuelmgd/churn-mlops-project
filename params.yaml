@@ -1,0 +1,8 @@
+model:
+  type: random_forest
+  n_estimators: 200
+  max_depth: 10
+
+split:
+  test_size: 0.2
+  random_state: 42
